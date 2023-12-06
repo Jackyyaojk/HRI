@@ -19,5 +19,5 @@ The plots will be saved in this directory (`/plots`).
 
 <div style="display: flex; justify-content: space-between;">
 
-![Plot 1](images/eroor.png)
-![Plot 2](images/prediction.png)
+![Plot 1](eroor.png)
+![Plot 2](prediction.png)
