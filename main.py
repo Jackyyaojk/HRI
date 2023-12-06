@@ -11,7 +11,7 @@ import torch
 # from hand_tracker.tracker_state import TrackerState
 from up_sample import main as UpsampleDems
 from train import main as UpdatePolicy
-from simulation import SimulationEnv
+from interface_gui.simulation import SimulationEnv
 from policy import PolicyNetwork
 from utils import *
 

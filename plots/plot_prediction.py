@@ -1,32 +1,35 @@
 import numpy as np
 import pickle
+import sys
+sys.path.append('../')
 
 from utils import *
 
 
 
-dem_nums = ['1', '2', '3', '4']
-interfaces = ['none', 'gui', 'ar+haptic']
 
+## 12 participants assembled a 4-leg chair with 3 test conditions
 total_users = 12
 total_legs = len(LEGS)
+dem_nums = ['1', '2', '3', '4']
+interfaces = ['implicit', 'gui', 'ar+haptic']
 
+## convert chair leg states: joints space to cartesian space 
 Panda = TrajectoryClient()
 Legs_q = np.array(LEGS)
 Legs_xyz = np.array(list(map(lambda q: Panda.joint2pose(q)[0].tolist(), Legs_q)))
 
 ## data structure: (number of users) X (leg number) 
 dists = {
-        "none": np.zeros((total_users, total_legs)),
+        "implicit": np.zeros((total_users, total_legs)),
         "gui": np.zeros((total_users, total_legs)),
         "ar+haptic":np.zeros((total_users, total_legs))
         }
 
+## load user demonstrations
 for idx in range(0,12):
-    ## user dems
     user = 'user' + str(idx+1)
-    data_path = 'data/{}/dems'.format(user)
-
+    data_path = '../data/{}/dems'.format(user)
     for interface in interfaces:
         with open('{}/{}_dems.pkl'.format(data_path, interface), 'rb') as file:
             user_dems = pickle.load(file)
@@ -38,45 +41,32 @@ for idx in range(0,12):
         user_pick_dems_xyz = np.array(list(map(lambda q: Panda.joint2pose(q)[0].tolist(), user_pick_dems_q)))
         dists[interface][idx, :] = np.linalg.norm(Legs_xyz - user_pick_dems_xyz, axis=1)
 
-
-## count how many times users misunderstood the robot
+## count users correct predictions
 dist_thresh = 0.12
-total_times = total_users * total_legs
-
-correct_guess_none = np.count_nonzero(dists["none"] < dist_thresh, axis=1) / 4
-correct_guess_gui = np.count_nonzero(dists["gui"] < dist_thresh, axis=1) / 4
-correct_guess_arhaptic = np.count_nonzero(dists["ar+haptic"] < dist_thresh, axis=1) / 4
-
-correct_guess_none_mean = np.mean(correct_guess_none)
+correct_guess_implicit = np.count_nonzero(dists["implicit"] < dist_thresh, axis=1) / 4 * 100
+correct_guess_gui = np.count_nonzero(dists["gui"] < dist_thresh, axis=1) / 4 * 100
+correct_guess_arhaptic = np.count_nonzero(dists["ar+haptic"] < dist_thresh, axis=1) / 4 * 100
+## means
+correct_guess_implicit_mean = np.mean(correct_guess_implicit)
 correct_guess_gui_mean = np.mean(correct_guess_gui)
 correct_guess_arhaptic_mean = np.mean(correct_guess_arhaptic)
-
-correct_guess_none_var = np.std(correct_guess_none)
+## standard deviations
+correct_guess_implicit_var = np.std(correct_guess_implicit)
 correct_guess_gui_var = np.std(correct_guess_gui)
 correct_guess_arhaptic_var = np.std(correct_guess_arhaptic)
 
-print(1 - correct_guess_none_mean, correct_guess_gui_mean, correct_guess_arhaptic_mean)
-exit()
 
-## plotting
+## plot
 fig, ax = plt.subplots(figsize=(10, 8), dpi=100)
-categories = ['Correct Perceived Leg']
-conditions = ['none', 'gui', 'ar+haptic']
-
-
-# Create bar plots
+categories = ['Conditions']
+conditions = ['implicit', 'gui', 'ar+haptic']
 index = np.arange(len(categories))
 bar_width = 0.01
-ax.bar(index, correct_guess_none_mean, yerr=correct_guess_none_var, width=bar_width, label='none')
-ax.bar(index + bar_width, correct_guess_gui_mean, yerr=correct_guess_gui_var, width=bar_width, label='gui')
-ax.bar(index + 2*bar_width, correct_guess_arhaptic_mean, yerr=correct_guess_arhaptic_var, width=bar_width, label='ar+haptic')
-
-# Customize the plot
-ax.set_ylabel('Percent Times')
+ax.bar(index, correct_guess_implicit_mean, yerr=correct_guess_implicit_var, width=bar_width, label='implicit', color=[179/255, 179/255, 179/255])
+ax.bar(index + bar_width, correct_guess_gui_mean, yerr=correct_guess_gui_var, width=bar_width, label='gui', color=[160/255, 212/255, 164/255])
+ax.bar(index + 2*bar_width, correct_guess_arhaptic_mean, yerr=correct_guess_arhaptic_var, width=bar_width, label='ar+haptic', color=[34/255, 139/255, 69/255])
+ax.set_ylabel('Correct Prediction [%]')
 ax.set_xticks(index + bar_width)
 ax.set_xticklabels(categories)
 ax.legend()
-
-# Show the plot
-# plt.show()
-plt.savefig("count.svg")
+plt.savefig("prediction.png")
