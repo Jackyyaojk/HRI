@@ -6,7 +6,7 @@ We used two objective metrics to analyze the outcomes of closing the loop on rob
 2. `Error`: the robot's error in assembling the chair legs after receiving corrections from the human.
 
 
-### Plot Objective Resutls
+### Plot Objective Results
 To plot `Correct Prediction` run this command in terminal:
 ```
 python plot_prediction.py
@@ -16,10 +16,3 @@ To plot `Error` run this command in terminal:
 python plot_error.py
 ```
 The plots will be saved in this directory (`/plots`).
-
-<div style="display: flex; justify-content: space-between;">
-
-<img src="error.png" alt="Plot 1" width="300"/>
-<img src="prediction.png" alt="Plot 2" width="300"/>
-
-</div>
