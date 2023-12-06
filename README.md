@@ -34,5 +34,5 @@ How to run the `main.py` script:
 ```
 python main.py --user user_number
 ```
-The `user_number` should be entered as an arbitrary digit. Each user interacts with the environment 48 times in total. It invloves various conditions and map scenarios. The `batch_number` is a digit from 1 to 3 and it refers to the combination block that was pre-populated for all participants using `participant_sheet.py`.
+
 
