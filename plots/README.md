@@ -19,7 +19,7 @@ The plots will be saved in this directory (`/plots`).
 
 <div style="display: flex; justify-content: space-between;">
 
-<img src="error.png" alt="Plot 1" width="100"/>
-<img src="prediction.png" alt="Plot 2" width="100"/>
+<img src="error.png" alt="Plot 1" width="300"/>
+<img src="prediction.png" alt="Plot 2" width="300"/>
 
 </div>
