@@ -1,9 +1,5 @@
 # communicative-robot-learning
-A Review of Communicating Robot Learning during Human-Robot Interaction
-
-## Repo Status
-
-🚧 **Under Construction**
+A Review of Communicating Robot Learning during Human-Robot Interaction (🚧 **Under Construction**)
 
 This repo is currently in development. We appreciate your patience and interest.
 
