@@ -17,4 +17,4 @@ python plot_error.py
 ```
 The plots will be saved in this directory (`/plots`).
 
-![Distribution Plot](images/error.png)
+![Distribution Plot](error.png)
