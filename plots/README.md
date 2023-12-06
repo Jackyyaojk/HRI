@@ -7,12 +7,19 @@ We used two objective metrics to analyze the outcomes of closing the loop on rob
 
 
 ### Plot Objective Results
-To plot `Correct Prediction` run this command in terminal:
+To plot `Correct Prediction` run this command:
 ```
 python plot_prediction.py
 ```
-To plot `Error` run this command in terminal:
+To plot `Error` run this command:
 ```
 python plot_error.py
 ```
-The plots will be saved in this directory (`/plots`).
+
+
+### Plot Subjective Results
+To be completed...
+
+
+
+All plots will be saved in this directory (`/plots`).
