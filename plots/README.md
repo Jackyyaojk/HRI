@@ -3,14 +3,17 @@ We used two objective metrics to analyze the outcomes of closing the loop on rob
 
 1. `Correct Prediction`: records how frequently users were able to correctly predict which chair leg the robot was assembling.
 
-2. `Error`: the robot's errir in assembling the chair legs after receiving corrections from the human.
+2. `Error`: the robot's error in assembling the chair legs after receiving corrections from the human.
 
 
 ### Plot Resutls
-Plot  `main.py` script:
-
+To plot `Correct Prediction` run this command in terminal:
 ```
-python main.py --user user_number
+python plot_prediction.py
 ```
-
+To plot `Error` run this command in terminal:
+```
+python plot_error.py
+```
+The plots will be saved in the `/plots` directory.
 
