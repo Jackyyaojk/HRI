@@ -9,7 +9,13 @@ Contents:
 - [Instructions](#instructions)
 
 ## Interface Overview
-
+- How does it work?
+  - The Commander script is designed to control the locations of holograms within a Unity app developed for the HoloLens device. The script acts as a central controller for managing holographic spheres in Unity, fetching data from a server, and updating the holographic display based on received information.
+  - In our study, the spheres represent the waypoints for pickup and drop-off locations of the legs.
+  - The initial coordinates of the spheres is read from the robotIniti.txt file (pulled from the server).
+  - These coordinates correspond to the waypoints based on the initial set of training data the robot has been provided with.
+  - As the human teacher provides corrections, the robot's training dataset is updated with the corrections, and the new coordinates of the waypoints based on this retraining is updated in the robotUpdate.txt file.
+  - The Unity app then pulls these new coordinates from the server, and updates the holographic spheres coordinates in the AR environment.
 
 ## Equipment Requirements
 - A Windows PC configured with the tools installed (see [Software Requirements](#software-requirements))
