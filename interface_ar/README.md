@@ -14,8 +14,15 @@ Contents:
   - In our study, the spheres represent the waypoints for pickup and drop-off locations of the legs.
   - The initial coordinates of the spheres are read from the robotIniti.txt file (pulled from the server).
   - These coordinates correspond to the waypoints based on the initial set of training data the robot has been provided with.
-  - As the human teacher provides corrections, the robot's training dataset is updated with the corrections, and the new coordinates of the waypoints based on this retraining is updated in the robotUpdate.txt file.
+  - As the human teacher provides corrections, the robot's training dataset is updated with the corrections, and the new coordinates of the waypoints based on this retraining are updated in the robotUpdate.txt file.
   - The Unity app then pulls these new coordinates from the server, and updates the holographic spheres coordinates in the AR environment.
+- Scene sequence
+  - Once the app is started in HoloLens, a message will appear saying *Select Robot Base*. This scence is designed to calibrate the environment and provide a coordinate system of coordinates for the environment to render the holograms.
+  - To provide a consistent coordinate system to the user every time the app is used, we placed tape markers at the base of the robot, as well as at points corresponding to projections of the x, y, and z axes.
+  - The user first gazes the pointer to the tape marker in the robot base and *clicks* it using hand gestures to select the origin. A green sphere hologram will show up at the location the user has selected as the robot base.
+  - Then, the message in the AR environment changes to *Select the X-axis*. The user then gazes towards the tape marker corresponding to the x-axis, and selects it. A sphere hologram shows up to show the selected location. The procedure is then repeated for the y and z axes.
+  - After the coordinate system is set, the scene disappears and changes to show orange spheres. There should be four spheres representing the pick-up waypoints and four corresponding to the drop-off location. As explained previously, the location of these waypoints is based on the initial set of training data the robot has been provided with, read from the robotIniti.txt file.
+  - As the user trains the robot, the location of these waypoints is then updated. 
 
 ## Equipment Requirements
 - A Windows PC configured with the tools installed (see [Software Requirements](#software-requirements))
