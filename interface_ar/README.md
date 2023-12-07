@@ -21,7 +21,7 @@ Contents:
 - A Windows PC configured with the tools installed (see [Software Requirements](#software-requirements))
 - A HoloLens (1st gen) device configured for development (visit [this article](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2#enabling-developer-mode) for more information).
 
-  **NOTE:** These instructions are based on Wi-Fi deployment to HoloLens. Therefore, your PC and HoloLens device must be connected to the same network. A nice tool to verify Wi-Fi connectivity is the **Windows Device Portal**. Visit the [*Using the Windows Devive Portal* article](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-the-windows-device-portal#connecting-over-wi-fi) for more information.
+**NOTE:** These instructions are based on Wi-Fi deployment to HoloLens. Therefore, your PC and HoloLens device must be connected to the same network. A nice tool to verify Wi-Fi connectivity is the **Windows Device Portal**. Visit the [*Using the Windows Devive Portal* article](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-the-windows-device-portal#connecting-over-wi-fi) for more information.
 
 
 ## Software Requirements
