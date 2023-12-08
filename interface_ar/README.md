@@ -1,4 +1,4 @@
-# Augmented Reality Hololens 1
+# Augmented Reality HoloLens 1
 
 This document guides you through the process of implementing the augmented reality (AR) interface featured in our case study with HoloLens (1st gen). To accomplish this, you'll create a Unity package using the provided folders and files.
 
@@ -9,20 +9,19 @@ Contents:
 - [Instructions](#instructions)
 
 ## Interface Overview
-- How does it work?
-  - The Commander script is designed to control the locations of holograms within a Unity app developed for the HoloLens device. The script acts as a central controller for managing holographic spheres in Unity, fetching data from a server, and updating the holographic display based on the received information.
-  - In our study, the spheres represent the waypoints for pickup and drop-off locations of the legs.
-  - The initial coordinates of the spheres are read from the robotIniti.txt file (pulled from the server).
-  - These coordinates correspond to the waypoints based on the initial set of training data the robot has been provided with.
-  - As the human teacher provides corrections, the robot's training dataset is updated with the corrections, and the new coordinates of the waypoints based on this retraining are updated in the robotUpdate.txt file.
-  - The Unity app then pulls these new coordinates from the server, and updates the holographic spheres coordinates in the AR environment.
-- Scene sequence
-  - Once the app is started in HoloLens, a message will appear saying *Select Robot Base*. This scence is designed to calibrate the environment and provide a coordinate system of coordinates for the environment to render the holograms.
-  - To provide a consistent coordinate system to the user every time the app is used, we placed tape markers at the base of the robot, as well as at points corresponding to projections of the x, y, and z axes.
+- **Functionality Overview**
+  - The *Commander* script in our Unity app for HoloLens controls holographic sphere locations. It acts as a central controller for spawning holographic spheres, fetching server data based on the robot learning, and updating the location of these holographic spheres based on the received information.
+  - These spheres represent waypoints of where the robot thinks the chair legs should be picked up and placed.
+  - The initial sphere coordinates come from the *robotIniti.txt* file, reflecting the robot's acquired learning with the initial training data.
+  - Corrections from the human teacher update the training dataset, and new waypoint coordinates are stored in *robotUpdate.txt*. The Unity app fetches these coordinates, dynamically updating the holographic spheres in the AR environment.
+  
+- **Scene sequence**
+  - Upon starting the app in the HoloLens device, a message prompts the user to *Select Robot Base*. This scene is designed to calibrate the environment and provide a coordinate system to render the holograms. 
+  - To provide a consistent coordinate system to the user every time the app is used, tape markers at the robot base and axes projections provide a consistent coordinate system.
   - The user first gazes the pointer to the tape marker in the robot base and *clicks* it using hand gestures to select the origin. A green sphere hologram will show up at the location the user has selected as the robot base.
-  - Then, the message in the AR environment changes to *Select the X-axis*. The user then gazes towards the tape marker corresponding to the x-axis, and selects it. A sphere hologram shows up to show the selected location. The procedure is then repeated for the y and z axes.
-  - After the coordinate system is set, the scene disappears and changes to show orange spheres. There should be four spheres representing the pick-up waypoints and four corresponding to the drop-off location. As explained previously, the location of these waypoints is based on the initial set of training data the robot has been provided with, read from the robotIniti.txt file.
-  - As the user trains the robot, the location of these waypoints is then updated. 
+  - Then, the message in the AR environment prompts the user to *Select the X-axis*. The user then gazes towards the tape marker corresponding to the x-axis, and selects it. A sphere hologram shows up to show the selected location. The procedure is then repeated for the y and z axes.
+  - After the coordinate system is set, the scene transitions to display orange spheres representing pickup and drop-off waypoints based on the robot's acquired learning with the initial training data. There should be four spheres representing the pick-up waypoints and four corresponding to the drop-off locations.
+  - As the user trains the robot, these waypoint locations update in the AR environment.
 
 ## Equipment Requirements
 - A Windows PC configured with the tools installed (see [Software Requirements](#software-requirements))
@@ -54,16 +53,16 @@ The following software versions were used to implement the AR environment:
 
 
 ## Instructions
-These instructions are based on [Microsoft Mixed Reality documentation](https://learn.microsoft.com/en-us/windows/mixed-reality/). We highly recommend visiting the *HoloLens (1st gen) Basics* [articles](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/unity/tutorials/holograms-100) for detailed, step-by-step tutorials to get familiar with Mixed Reality development in Unity and development some quick holographic applications deployed in HoloLens 1. Following these tutorials guarantees your setup and tools are configured properly and you are familiar with development in Unity. This Microsoft documentation may be helpful to solve issues/questions you may encounter that are not addressed in these instructions. 
+These instructions are based on [Microsoft Mixed Reality documentation](https://learn.microsoft.com/en-us/windows/mixed-reality/). We highly recommend visiting the *HoloLens (1st gen) Basics* [articles](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/unity/tutorials/holograms-100) for detailed, step-by-step tutorials to get familiar with Mixed Reality development in Unity and development some quick holographic applications deployed in HoloLens 1. Following these tutorials guarantees your setup and tools are configured properly, and you are familiar with development in Unity. This Microsoft documentation may be helpful to solve issues/questions you may encounter that are not addressed in these instructions. 
 
-1. Create a new project in Unity
+1. **Create a new project in Unity**
    - Open Unity Hub.
    - Log in and click on *New Project*
    - Select *3D* template
    - Choose the right Unity version (2019.4.13f1)
    - Name your project and select its location in your drive
    - Click *Create project*
-2. Import the provided files
+2. **Import the provided files**
    - Close the project, and navigate to the selected directory for your project.
    - Download the provided folders:
        - *Assets*
@@ -72,14 +71,14 @@ These instructions are based on [Microsoft Mixed Reality documentation](https://
    - First, navigate to the *Assets* folder in your **project** directory. Select and delete all the contents. Then, copy the contents of the **downloaded** *Assets* folder, and paste it in your **project** *Assets* folder.
    - Repeat the previous step for the *Packages* and *ProjectSettings* folders.
    - Navigate to the *Assets* folder. Locate the *WSATestCertificate* file and metafile, and delete them. 
-3. Relaunch the project in Unity Hub.
+3. **Relaunch the project in Unity Hub**.
    - Now you should be able to see all assets and packages imported into the project.
-4. Edit project settings
+4. **Edit project settings**
    - Navigate to Edit > Project Settings > Player
      - Change the Company and Product name as you wish.
      - Under *Publishing Settings*, change the Package name  and Description.
      - Every time you want to build a new version of an app package to debug but want to keep old iterations of the app in the Hololens, you will need to change these names to make sure apps are not overwritten when uploaded to Hololens.
-5. Build the app package
+5. **Build the app package**
    - Navigate to File > Build Settings
    - Under *Scenes in Build*, **select *Scenes/project* only**
    - Select *Universal Windows Platform* under *Platform*
@@ -97,7 +96,7 @@ These instructions are based on [Microsoft Mixed Reality documentation](https://
    - Press *Switch Platform*
    - Wait for the status bar to complete, then press *Build*
    - A file explorer window will pop up, showing your project directory. Create a new folder named *App*. Open it, and then click *Select Folder*. A new status bar will show up. Wait for it to complete building the package. 
-6. Deploy to Hololens using VS 2022
+6. **Deploy to Hololens using VS 2022**
    - Navigate to the App folder you just created in your project directory when building the package.
    - Locate the *.sln* file that should be named as you indicated in project settings, and open it with Visual Studio 2022.
    - At this point, it is a good idea to open the **Windows Device Portal** to verify your Wi-Fi connectivity before trying deployment.
