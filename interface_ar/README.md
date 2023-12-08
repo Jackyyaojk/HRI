@@ -46,6 +46,10 @@ The following software versions were used to implement the AR environment:
 - **Unity Hub 3.6.0**
 - **Unity 2019 LTS (2019.4.13f1)**
     - Make sure to install Universal Windows Platform Build Support while installing the Unity version
+- **Download the provided package files, found in the *Unity* folder**
+  - *Assets* folder
+  - *Packages* folder
+  - *ProjectSettings* folder
 
 
 
