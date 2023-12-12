@@ -18,7 +18,10 @@ python plot_error.py
 
 
 ### Plot Subjective Results
-To be completed...
+To plot `Subjective Measures Results`, you will need an excel file with your results (subjective_responses.xslx). To plot, run this command:
+```
+python subjective_data_plotting.py
+```
 
 
 
