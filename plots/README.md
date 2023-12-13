@@ -18,8 +18,12 @@ python plot_error.py
 
 
 ### Plot Subjective Results
-To be completed...
+To plot `Subjective Measures Results`, you will need an excel file with your results (*subjective_responses.xslx*). To plot, run this command:
+```
+python subjective_data_plotting.py
+```
+Note: the data structure in *subjective_responses.xslx* is based on how **Google Forms** creates a spreadsheet out of our survey form. The data structure may be different for your survey.
 
-
+---
 
 All plots will be saved in this directory (`/plots`).
